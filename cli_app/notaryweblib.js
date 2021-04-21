@@ -1,10 +1,17 @@
 
-const Web3 = require('web3');
-const jsSHA = require("jssha");
-const fs = require("fs");
+//const Web3 = require('web3');
+var web3 = document.createElement('script');
+web3.setAttribute('src','https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.5/web3.min.js');
+document.head.appendChild(web3);
+//const jsSHA = require("jssha");
+var jsSHA = document.createElement('script');
+web3.setAttribute('src','https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js');
+document.head.appendChild(jsSHA);
 
-let web3 = undefined;
-let contract = undefined;
+//const fs = require('fs');
+
+ web3 = undefined;
+ contract = undefined;
 
 function init () {
   //set up network
@@ -91,7 +98,8 @@ function init () {
 
 //get a SHA-256 hash from a file --> works synchronously
 function calculateHash (fileName) {
-  let fileContent = fs.readFileSync(fileName);
+  //let fileContent = fs.readFileSync(fileName);
+  let fileContent = FileReader.readAsArrayBuffer(fileName);
   return calculateHashBytes(fileContent);
 };
 
@@ -129,7 +137,7 @@ function findHash (hash, callback) {
   });
 };
 
-let NotaryExports = {
+ NotaryExports = {
   findHash : findHash,
   sendHash : sendHash,
   calculateHash : calculateHash,

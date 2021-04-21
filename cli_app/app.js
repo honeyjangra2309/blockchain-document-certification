@@ -1,4 +1,7 @@
-const notary = require('./notaryweblib.js');
+//const notary = require('./notaryweblib.js');
+var notary = document.createElement('script');
+notary.setAttribute('src','./notaryweblib.js');
+document.head.appendChild(notary);
 const commandLineArgs = require('command-line-args');
 
 const cmdOptions = [
