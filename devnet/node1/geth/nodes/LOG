@@ -1,0 +1,44 @@
+=============== Apr 19, 2021 (IST) ===============
+19:08:50.807943 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:08:50.924259 db@open opening
+19:08:50.925260 version@stat F·[] S·0B[] Sc·[]
+19:08:50.947464 db@janitor F·2 G·0
+19:08:50.947464 db@open done T·23.2053ms
+19:12:45.707535 db@close closing
+19:12:45.725536 db@close done T·1.0045ms
+=============== Apr 19, 2021 (IST) ===============
+19:13:40.162627 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:13:40.165637 version@stat F·[] S·0B[] Sc·[]
+19:13:40.165637 db@open opening
+19:13:40.166636 journal@recovery F·1
+19:13:40.178460 journal@recovery recovering @1
+19:13:40.230392 memdb@flush created L0@2 N·101 S·1KiB "loc..seq,v2":"version,v1"
+19:13:40.239387 version@stat F·[1] S·1KiB[1KiB] Sc·[0.25]
+19:13:40.313803 db@janitor F·3 G·0
+19:13:40.313803 db@open done T·148.1664ms
+=============== Apr 19, 2021 (IST) ===============
+19:21:44.171188 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:21:44.171188 version@stat F·[1] S·1KiB[1KiB] Sc·[0.25]
+19:21:44.171188 db@open opening
+19:21:44.172189 journal@recovery F·1
+19:21:44.175192 journal@recovery recovering @3
+19:21:44.207757 memdb@flush created L0@5 N·98 S·1KiB "loc..seq,v103":"n:\xf2..ail,v115"
+19:21:44.211758 version@stat F·[2] S·2KiB[2KiB] Sc·[0.50]
+19:21:44.284124 db@janitor F·4 G·0
+19:21:44.284124 db@open done T·111.9348ms
+=============== Apr 19, 2021 (IST) ===============
+19:40:00.070256 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:40:00.090251 version@stat F·[2] S·2KiB[2KiB] Sc·[0.50]
+19:40:00.090251 db@open opening
+19:40:00.090251 journal@recovery F·1
+19:40:00.094256 journal@recovery recovering @6
+19:40:00.185142 memdb@flush created L0@8 N·13 S·627B "loc..seq,v202":"n:\xf2..ail,v203"
+19:40:00.189139 version@stat F·[3] S·3KiB[3KiB] Sc·[0.75]
+19:40:00.353631 db@janitor F·5 G·0
+19:40:00.353631 db@open done T·263.3803ms
+19:40:45.953816 table@compaction L0·3 -> L1·0 S·3KiB Q·319
+19:40:46.007008 table@build created L1@11 N·10 S·616B "loc..seq,v202":"version,v1"
+19:40:46.007008 version@stat F·[0 1] S·616B[0B 616B] Sc·[0.00 0.00]
+19:40:46.040432 table@compaction committed F-2 S-2KiB Ke·0 D·202 T·86.6155ms
+19:40:46.040562 table@remove removed @5
+19:40:46.041555 table@remove removed @2

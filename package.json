@@ -1,0 +1,22 @@
+{
+  "name": "truffle1",
+  "version": "1.0.0",
+  "description": "website",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "command-line-args": "^5.1.1",
+    "geth": "^0.4.0",
+    "jssha": "^3.2.0",
+    "lite-server": "^2.6.1",
+    "web3": "^1.3.4"
+  }
+}
