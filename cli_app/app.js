@@ -1,46 +1,53 @@
-//const notary = require('./notaryweblib.js');
-var notary = document.createElement('script');
-notary.setAttribute('src','./notaryweblib.js');
-document.head.appendChild(notary);
-const commandLineArgs = require('command-line-args');
+$(document).ready(function() {
+  notary_init();
+});
 
-const cmdOptions = [
-  {
-    name: "add",
-    alias: "a",
-    type: String
-  },
-  {
-    name: "find",
-    alias: "f",
-    type: String
+function hashForFile(callback) {
+  input = document.getElementById("hashFile");
+  if (!input.files[0]) {
+      alert("Please select a file first");
   }
-];
-const options = commandLineArgs(cmdOptions);
+  else {
+      file = input.files[0];
+      fr = new FileReader();
+      fr.onload = function (e) {
+          content = e.target.result;
+          var shaObj = new jsSHA("SHA-256", "ARRAYBUFFER");
+          shaObj.update(content);
+          var hash = "0x" + shaObj.getHash("HEX");
+          callback(null, hash);
+      };
+      fr.readAsArrayBuffer(file);
+  }
+};
 
-notary.init();
+function send () {
+  hashForFile(function (err, hash) {
+      notary_send(hash, function(err, tx) {
+          $("#responseText").html("<p>File successfully fingreprinted onto Ethereum blockchain.</p>"
+              + "<p>File Hash Value: " + hash +"</p>"
+              + "<p>Transaction ID: " + tx +"</p>"
+              + "<p>Available at contract address: " + address +"</p>"
+              + "<p><b>Please allow a few minutes for transaction to be mined.</b></p>"
+          );
+      });
+  });
+};
 
-if (options.add) {
-  console.log("Sending hash for file: " + options.add);
-  let hash = notary.calculateHash(options.add);
-  console.log("SHA-256 hash value: " + hash);
-  notary.sendHash(hash, function(error, tx) {
-    console.log("Transaction ID: " + tx);
+function find () {
+  hashForFile(function (err, hash) {
+      notary_find(hash, function(err, resultObj) {
+          if (resultObj.blockNumber != 0) {
+              $("#responseText").html("<p>File fingerprint found on Ethereum blockchain.</p>"
+                  + "<p>File Hash Value: " + hash + "</p>"
+                  + "<p>Block No.: " + resultObj.blockNumber + "</p>"
+                  + "<p>Timestamp: " + resultObj.mineTime + "</p>"
+              );
+          } else {
+              $("#responseText").html("<p>File fingerprint not found on Ethereum blockchain.</p>"
+                  + "<p>File Hash Value: " + hash + "</p>"
+              );
+          }
+      });
   });
-}
-else if (options.find) {
-  console.log("Looking up hash for file: " + options.find);
-  let hash = notary.calculateHash(options.find);
-  console.log("SHA-256 hash value: " + hash);
-  notary.findHash(hash, function (error, result) {
-    if (result.blockNumber!=0)
-    {
-      console.log("Has value found at block No.: " + result.blockNumber);
-      console.log("Mine time: " + result.mineTime);
-    }
-    else console.log("Hash value not found on blockchain");
-  });
-}
-else {
-  console.log("Illegal command line options");
-}
+};
